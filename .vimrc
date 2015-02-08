@@ -1,6 +1,6 @@
 " Sheldon Burks .vimrc
 " Contact Info: sheldon.burks@gmail.com
-" Github: aww.github.com/SheldonB
+" Github: www.github.com/SheldonB
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 "	        	General		               		   "
@@ -40,6 +40,8 @@ set hidden
 "not forsure what this does, will find out
 set lazyredraw
 
+"set past toggle
+set pastetoggle=<F2>
 " List of All installed Plugins
 " T-Comment
 " NERDTree
@@ -57,6 +59,9 @@ set lazyredraw
 syntax enable
 
 colorscheme jellybeans
+"let g:solarized_termcolors=256
+"colorscheme solarized 
+"set background=dark
 
 let g:airline_powerline_fonts=1
 
