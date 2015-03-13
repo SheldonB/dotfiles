@@ -58,10 +58,9 @@ set pastetoggle=<F2>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 
-colorscheme jellybeans
-"let g:solarized_termcolors=256
-"colorscheme solarized 
-"set background=dark
+" colorscheme jellybeans
+colorscheme solarized 
+set background=dark
 
 let g:airline_powerline_fonts=1
 
