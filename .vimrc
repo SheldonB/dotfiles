@@ -12,6 +12,9 @@ filetype plugin indent on
 "vi is old you know?
 set nocompatible
 
+"make backspace work correctly
+set backspace=2
+
 "Set the leader key
 let mapleader=","
 
@@ -70,6 +73,7 @@ set t_Co=256
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 "             Text, tab, and indent                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+set guifont=Source\ Code\ Pro\ SemiBold:h14
 "use spaces instead of tabs
 set expandtab
 
