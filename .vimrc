@@ -113,6 +113,15 @@ nnoremap <leader>s :w<cr>
 "Shortcut to my .vimrc
 noremap <leader>rc :e $MYVIMRC<cr>
 
+"buffer delete
+noremap <leader>d :bd<CR>
+
+"make navigating splits easier
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Keybindings                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
