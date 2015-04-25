@@ -100,12 +100,6 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-"set escape for modes
-inoremap jj <Esc>
-
-"Still breaking those bad habits
-inoremap <Esc> <NOP>
-
 "Mapping for save
 inoremap <leader>s <esc>:w<cr>a
 nnoremap <leader>s :w<cr>
@@ -122,6 +116,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"Make moving between buffers easier
+" nnoremap <leader>n :bn<CR>
+" nnoremap <leader>p :bp<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Keybindings                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,3 +132,9 @@ noremap <C-n> :NERDTreeToggle<cr>
 "CtrlP Bindings
 inoremap <leader>cb <esc>:CtrlPBuffer<cr>a
 nnoremap <leader>cb :CtrlPBuffer<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"             Plugin Settings                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
