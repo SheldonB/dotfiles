@@ -5,12 +5,30 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 "	        	General		               		   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-"setup pathogen
-execute pathogen#infect()
-filetype plugin indent on
-
 "vi is old you know?
 set nocompatible
+filetype off
+
+"Setup vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+"Vundle Plugins
+Plugin 'tomtom/tcomment_vim'
+Plugin 'bling/vim-bufferline'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+call vundle#end()
+filetype plugin indent on
 
 "make backspace work correctly
 set backspace=2
@@ -81,8 +99,8 @@ set expandtab
 set smarttab
 
 "set tab config
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 set ai "Auto indent
 set si "Smart indent
