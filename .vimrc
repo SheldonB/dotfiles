@@ -15,18 +15,19 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 "Vundle Plugins
-Plugin 'tomtom/tcomment_vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 call vundle#end()
 filetype plugin indent on
 
@@ -34,7 +35,7 @@ filetype plugin indent on
 set backspace=2
 
 "Set the leader key
-let mapleader=","
+let mapleader="\<Space>"
 
 "Turn an line numbers
 "or relative numbering
@@ -63,17 +64,7 @@ set lazyredraw
 
 "set past toggle
 set pastetoggle=<F2>
-" List of All installed Plugins
-" T-Comment
-" NERDTree
-" Ctrl-P
-" delimitMate
-" Snipmate
-" Syntastic
-" vim-airline
-" tmuxline
-" fugitive
-" vim-bufferline
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "	        	Colors and Fonts                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,7 +82,7 @@ set t_Co=256
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 "             Text, tab, and indent                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-set guifont=Source\ Code\ Pro\ SemiBold:h14
+set guifont=Source\ Code\ Pro\ SemiBold:h12
 "use spaces instead of tabs
 set expandtab
 
@@ -119,7 +110,6 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 "Mapping for save
-inoremap <leader>s <esc>:w<cr>a
 nnoremap <leader>s :w<cr>
 
 "Shortcut to my .vimrc
@@ -135,9 +125,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "Make moving between buffers easier
-" nnoremap <leader>n :bn<CR>
-" nnoremap <leader>p :bp<CR>
-
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+ 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Keybindings                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -145,14 +135,26 @@ nnoremap <C-H> <C-W><C-H>
 noremap <leader>c :TComment<cr>
 
 "NERDtree Bindings
-noremap <C-n> :NERDTreeToggle<cr> 
+noremap <leader>n :NERDTreeToggle<cr> 
 
 "CtrlP Bindings
-inoremap <leader>cb <esc>:CtrlPBuffer<cr>a
 nnoremap <leader>cb :CtrlPBuffer<cr>
+nnoremap <leader>p  :CtrlP<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Settings                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""
+"Do not throw an error in Angular Apps
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
+"Keybinding to Expand a Snippet
+let g:UltiSnipsExpandTrigger='<C-x>'
+
+"Use JSX Syntax in normal JS files
+let g:jsx_ext_required=0
+
+"Use eslint to lint JS files
+let g:syntastic_javascript_checkers = ['eslint']
+
+"Do no search node_modules
+set wildignore +=*/node_modules/*
