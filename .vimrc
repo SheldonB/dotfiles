@@ -15,8 +15,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 "Vundle Plugins
-Plugin 'bling/vim-bufferline'
-Plugin 'bling/vim-airline'
+"Plugin 'bling/vim-bufferline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'edkolev/tmuxline.vim'
@@ -28,6 +29,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype plugin indent on
 
@@ -65,13 +67,16 @@ set lazyredraw
 "set past toggle
 set pastetoggle=<F2>
 
+"Auto read files if they change
+set autoread
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "	        	Colors and Fonts                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 
-" colorscheme jellybeans
-colorscheme solarized 
+"colorscheme jellybeans
+colorscheme solarized
 set background=dark
 
 let g:airline_powerline_fonts=1
@@ -127,7 +132,10 @@ nnoremap <C-H> <C-W><C-H>
 "Make moving between buffers easier
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
- 
+
+"Remove all trailing whitespace
+nnoremap <leader>rw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Keybindings                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -135,7 +143,7 @@ nnoremap <leader>bp :bp<CR>
 noremap <leader>c :TComment<cr>
 
 "NERDtree Bindings
-noremap <leader>n :NERDTreeToggle<cr> 
+noremap <leader>n :NERDTreeToggle<cr>
 
 "CtrlP Bindings
 nnoremap <leader>cb :CtrlPBuffer<cr>
@@ -144,6 +152,9 @@ nnoremap <leader>p  :CtrlP<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Settings                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""
+"Airline Settings
+let g:airline#extensions#tabline#enabled = 1
+
 "Do not throw an error in Angular Apps
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
@@ -153,8 +164,18 @@ let g:UltiSnipsExpandTrigger='<C-x>'
 "Use JSX Syntax in normal JS files
 let g:jsx_ext_required=0
 
-"Use eslint to lint JS files
-let g:syntastic_javascript_checkers = ['eslint']
+"Syntasitc Javascript settings
+let g:syntastic_javascript_checkers=['eslint']
+
+"Syntastic Python settings
+let g:syntastic_python_python_exec='/usr/local/bin/python3'
+let g:syntastic_python_checkers=['flake8']
+
+"Sytastic TypeScript settings
+let g:syntastic_typescript_tsc_fname=''
+
+"set working directory for CtrlP
+let g:ctrlp_working_path_mode = 'ra'
 
 "Do no search node_modules
 set wildignore +=*/node_modules/*
