@@ -1,47 +1,39 @@
-" Sheldon Burks .vimrc
+" Sheldon Burks Neovim Config
 " Contact Info: sheldon.burks@gmail.com
 " Github: www.github.com/SheldonB
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 "	        	General		               		   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-"vi is old you know?
 set nocompatible
 filetype off
 
-"Setup vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
 Plugin 'gmarik/Vundle.vim'
 
-"Vundle Plugins
-"Plugin 'bling/vim-bufferline'
+"Plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'zchee/deoplete-jedi'
 call vundle#end()
 filetype plugin indent on
 
-"make backspace work correctly
-set backspace=2
-
-"Set the leader key
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	        	General		               		   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader="\<Space>"
 
-"Turn an line numbers
-"or relative numbering
-"set number
+"Turn an relative line numbers
 set relativenumber
 
 "don't let Vim back up my files
@@ -75,7 +67,6 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 
-"colorscheme jellybeans
 colorscheme solarized
 set background=dark
 
@@ -120,9 +111,6 @@ nnoremap <leader>s :w<cr>
 "Shortcut to my .vimrc
 noremap <leader>rc :e $MYVIMRC<cr>
 
-"buffer delete
-noremap <leader>d :bd<CR>
-
 "make navigating splits easier
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -133,52 +121,33 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 
+"buffer delete
+noremap <leader>bd :bd<CR>
+
 "Remove all trailing whitespace
 nnoremap <leader>rw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Keybindings                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"T-Comment Bindings
-noremap <leader>c :TComment<cr>
 
-"NERDtree Bindings
-noremap <leader>n :NERDTreeToggle<cr>
-
-"CtrlP Bindings
+"CtrlP Mappings
 nnoremap <leader>cb :CtrlPBuffer<cr>
 nnoremap <leader>p  :CtrlP<cr>
 
+imap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction"}}}"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Settings                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "Airline Settings
 let g:airline#extensions#tabline#enabled = 1
 
-"Do not throw an error in Angular Apps
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-
-"Keybinding to Expand a Snippet
-let g:UltiSnipsExpandTrigger='<C-x>'
-
-"Use JSX Syntax in normal JS files
-let g:jsx_ext_required=0
-
-"Syntasitc Javascript settings
-let g:syntastic_javascript_checkers=['eslint']
-
-"Syntastic Python settings
-let g:syntastic_python_python_exec='/usr/local/bin/python3'
-let g:syntastic_python_checkers=['flake8']
-
-"Sytastic TypeScript settings
-let g:syntastic_typescript_tsc_fname=''
-
-"set working directory for CtrlP
-let g:ctrlp_working_path_mode = 'ra'
-
-"Close the YCM preview window after completion
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
-"Do not search node_modules
-set wildignore +=*/node_modules/*
+"Enable Deoplete
+let g:deoplete#enable_at_startup = 1
