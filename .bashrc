@@ -1,5 +1,5 @@
 # Edit the bash prompt
-alias vim="mvim -v"
+alias vim="nvim"
 
 export PS1="\u:\w \\$ "
-export EDITOR="mvim -v"
+export EDITOR="nvim"
