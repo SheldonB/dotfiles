@@ -62,6 +62,8 @@ set pastetoggle=<F2>
 "Auto read files if they change
 set autoread
 
+"Use custom cursor
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "	        	Colors and Fonts                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,5 +151,10 @@ function! s:check_back_space() abort "{{{
 "Airline Settings
 let g:airline#extensions#tabline#enabled = 1
 
+let g:ctrlp_working_path_mode = 'ra'
+
 "Enable Deoplete
 let g:deoplete#enable_at_startup = 1
+
+"Auto Close Deoplete Preview
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
