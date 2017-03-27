@@ -25,6 +25,7 @@ Plugin 'mxw/vim-jsx'
 "Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-jedi'
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -80,7 +81,7 @@ set t_Co=256
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 "             Text, tab, and indent                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-set guifont=Source\ Code\ Pro\ SemiBold:h12
+"set guifont=Source\ Code\ Pro\ SemiBold:h12
 "use spaces instead of tabs
 set expandtab
 
