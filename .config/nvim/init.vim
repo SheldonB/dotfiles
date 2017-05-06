@@ -2,40 +2,52 @@
 " Contact Info: sheldon.burks@gmail.com
 " Github: www.github.com/SheldonB
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	        	General		               		   "
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""
+"	        	      General		               "
+""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 filetype off
 
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle')
-Plugin 'gmarik/Vundle.vim'
+"set rtp+=~/.config/nvim/bundle/Vundle.vim
+"call vundle#begin('~/.config/nvim/bundle')
 
-"Plugins
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'edkolev/tmuxline.vim'
-"Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-"Plugin 'tpope/vim-fugitive'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'zchee/deoplete-jedi'
-Plugin 'leafgarland/typescript-vim'
-call vundle#end()
-filetype plugin indent on
+call plug#begin('~/.config/nvim/plugged')
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	        	General		               		   "
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme Plugins
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+
+" Text Editing Plugins
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+
+" Search plugins
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Completion Plugins
+Plug 'Shougo/deoplete.nvim'
+
+" Linting Plugins
+Plug 'w0rp/ale'
+
+" Python Plugins
+Plug 'zchee/deoplete-jedi'
+
+" Javascript / Typescript Plugins
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
+
+call plug#end()
+
 let mapleader="\<Space>"
 
 "Turn an relative line numbers
 set relativenumber
+
+"Show the actual number cursor line
+set number
 
 "don't let Vim back up my files
 set nobackup
@@ -50,8 +62,7 @@ set undolevels=1000
 "Show status bar always
 set laststatus=2
 
-"Not for sure what this does but
-"I was told to put this here
+"Make windows usable
 set hidden
 
 "not forsure what this does, will find out
@@ -65,12 +76,15 @@ set autoread
 
 "Use custom cursor
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Enable Mouse Usage
+set mouse=a
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-"	        	Colors and Fonts                    "
+"	        	    Colors and Fonts                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 
-colorscheme solarized
+colorscheme jellybeans
 set background=dark
 
 let g:airline_powerline_fonts=1
@@ -134,10 +148,7 @@ nnoremap <leader>rw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 "             Plugin Keybindings                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-"CtrlP Mappings
-nnoremap <leader>cb :CtrlPBuffer<cr>
-nnoremap <leader>p  :CtrlP<cr>
-
+" Allows for tabbing through deoplete suggestions
 imap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
   \ <SID>check_back_space() ? "\<TAB>" :
@@ -146,6 +157,11 @@ function! s:check_back_space() abort "{{{
     let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~ '\s'
     endfunction"}}}"
+
+
+" FZF Bindings
+nnoremap <leader>f :FZF<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Settings                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""
