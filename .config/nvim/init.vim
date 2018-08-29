@@ -8,9 +8,6 @@
 set nocompatible
 filetype off
 
-"set rtp+=~/.config/nvim/bundle/Vundle.vim
-"call vundle#begin('~/.config/nvim/bundle')
-
 call plug#begin('~/.config/nvim/plugged')
 
 " Theme Plugins
@@ -24,6 +21,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " Search plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Completion Plugins
 Plug 'Shougo/deoplete.nvim'
@@ -38,6 +36,10 @@ Plug 'zchee/deoplete-jedi'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+
+" QoL Plugins
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'qpkorr/vim-bufkill'
 
 call plug#end()
 
@@ -128,21 +130,19 @@ nnoremap <leader>s :w<cr>
 "Shortcut to my .vimrc
 noremap <leader>rc :e $MYVIMRC<cr>
 
-"make navigating splits easier
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 "Make moving between buffers easier
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 
 "buffer delete
-noremap <leader>bd :bd<CR>
+noremap <leader>bd :BD<CR>
 
 "Remove all trailing whitespace
 nnoremap <leader>rw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"Make creating splits easier
+nnoremap <leader>vs :vsplit<CR>
+nnoremap <leader>hs :split<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "             Plugin Keybindings                 "
